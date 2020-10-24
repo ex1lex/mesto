@@ -10,4 +10,4 @@
 
 **Preview**
 
-- [Ссылка на GitHub Pages](https://ex1lex.github.io/project-mesto)
+- [Ссылка на GitHub Pages](https://ex1lex.github.io/mesto)
