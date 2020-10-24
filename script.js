@@ -11,7 +11,7 @@ let inputSubTitle = document.querySelector('.form__input_about');
 function togglePopUp() {
 	inputTitle.value = profileTitle.textContent;
 	inputSubTitle.value = profileSubTitle.textContent;
-	popUp.classList.toggle('form-contaner_hide');
+	popUp.classList.toggle('form-container_hide');
 }
 
 editProfileBtn.addEventListener('click', togglePopUp);
