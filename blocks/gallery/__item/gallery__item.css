@@ -1,0 +1,17 @@
+.gallery__item {
+  width: 282px;
+  height: 361px;
+  align-self: center;
+}
+
+@media (max-width: 882px) {
+  .gallery__item {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 660px) {
+  .gallery__item {
+    margin: 0 auto;
+  }
+}

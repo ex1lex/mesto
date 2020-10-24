@@ -1,0 +1,7 @@
+.form {
+  padding: 48px;
+  margin: 90px auto;
+  display: flex;
+  align-items: baseline;
+  position: relative;
+}

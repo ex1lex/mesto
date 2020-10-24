@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="pages/index.css" />
+    <title>Mesto Russia</title>
+  </head>
+  <body class="page">
+      <header class="header">
+        <img class="logo" src="images/logo.svg" alt="Логотип" />
+      </header>
+      <main class="content">
+        <section class="profile-container">
+          <div class="profile">
+            <img class="profile__avatar" src="images/avatar.png" alt="">
+            <div class="profile__info">
+              <div class="profile__header">
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                <img src="images/edit-button.svg" alt="кнопка редактирования профиля" class="profile__edit-button">
+              </div>
+              <p class="profile__subtitle">Исследователь океана</p>
+            </div>
+          </div>
+          <img src="images/add-button.svg" alt="кнопка добавления новой фотографии" class="profile__add-button">
+        </section>
+
+        <section class="gallery">
+          <div class="gallery__item">
+            <img src="images/1.png" alt="картинка галереи" class="gallery__img">
+            <div class="gallery__label">
+              <h2 class="gallery__title">Карачаевск</h2>
+              <img src="images/like.svg" alt="" class="gallery__like">
+            </div>
+          </div>
+          <div class="gallery__item">
+            <img src="images/2.png" alt="картинка галереи" class="gallery__img">
+            <div class="gallery__label">
+              <h2 class="gallery__title">Гора Эльбрус</h2>
+              <img src="images/like.svg" alt="" class="gallery__like">
+            </div>
+          </div>
+          <div class="gallery__item">
+            <img src="images/3.png" alt="картинка галереи" class="gallery__img">
+            <div class="gallery__label">
+              <h2 class="gallery__title">Домбай</h2>
+              <img src="images/like.svg" alt="" class="gallery__like">
+            </div>
+          </div>
+          <div class="gallery__item">
+            <img src="images/4.png" alt="картинка галереи" class="gallery__img">
+            <div class="gallery__label">
+              <h2 class="gallery__title">Гора Эльбрус</h2>
+              <img src="images/like.svg" alt="" class="gallery__like">
+            </div>
+          </div>
+          <div class="gallery__item">
+            <img src="images/5.png" alt="картинка галереи" class="gallery__img">
+            <div class="gallery__label">
+              <h2 class="gallery__title">Домбай</h2>
+              <img src="images/like.svg" alt="" class="gallery__like">
+            </div>
+          </div>
+          <div class="gallery__item">
+            <img src="images/6.png" alt="картинка галереи" class="gallery__img">
+            <div class="gallery__label">
+              <h2 class="gallery__title">Карачаево-Черкессия</h2>
+              <img src="images/like.svg" alt="" class="gallery__like">
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__author">&copy; 2020 Mesto Russia</p>
+      </footer>
+      
+      
+      <div class="form-container form-contaner_hide">
+        <div class="form">
+          <form class="form__content">
+            <h3 class="form__title">Редактировать профиль</h3>
+            <input type="text" class="form__input form__input_name" value="">
+            <input type="text" class="form__input form__input_about" value="">
+            <input type="submit" class="form__submit" value="Сохранить">
+          </form>
+          <img src="images/close-button.svg" alt="" class="form__close-button">
+        </div>
+      </div>
+      <script src="script.js"></script>
+  </body>
+</html>

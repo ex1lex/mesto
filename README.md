@@ -1,17 +1,13 @@
 # Проект 4: Место
 
-### Обзор
+**Интро**
 
-* Figma
-* Картинки
+Это проект о месте, под названием Россия
 
 **Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4)
+- [Ссылка на макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4?node-id=18915%3A2)
 
-**Картинки**
+**Preview**
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+- [Ссылка на GitHub Pages](https://ex1lex.github.io/project-mesto)
