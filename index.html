@@ -13,58 +13,58 @@
       <main class="content">
         <section class="profile-container">
           <div class="profile">
-            <img class="profile__avatar" src="images/avatar.png" alt="">
+            <img class="profile__avatar" src="images/avatar.png" alt="Аватар профиля">
             <div class="profile__info">
               <div class="profile__header">
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <img src="images/edit-button.svg" alt="кнопка редактирования профиля" class="profile__edit-button">
+                <button type="submit" class="profile__edit-button"></button>
               </div>
               <p class="profile__subtitle">Исследователь океана</p>
             </div>
           </div>
-          <img src="images/add-button.svg" alt="кнопка добавления новой фотографии" class="profile-container__add-button">
+          <button type="submit" class="profile-container__add-button"></button>
         </section>
         <section class="gallery">
           <div class="gallery__item">
             <img src="images/1.png" alt="картинка галереи" class="gallery__img">
             <div class="gallery__label">
               <h2 class="gallery__title">Карачаевск</h2>
-              <img src="images/like.svg" alt="" class="gallery__like">
+              <button type="submit" class="gallery__like"></button>
             </div>
           </div>
           <div class="gallery__item">
             <img src="images/2.png" alt="картинка галереи" class="gallery__img">
             <div class="gallery__label">
               <h2 class="gallery__title">Гора Эльбрус</h2>
-              <img src="images/like.svg" alt="" class="gallery__like">
+              <button type="submit" class="gallery__like"></button>
             </div>
           </div>
           <div class="gallery__item">
             <img src="images/3.png" alt="картинка галереи" class="gallery__img">
             <div class="gallery__label">
               <h2 class="gallery__title">Домбай</h2>
-              <img src="images/like.svg" alt="" class="gallery__like">
+              <button type="submit" class="gallery__like"></button>
             </div>
           </div>
           <div class="gallery__item">
             <img src="images/4.png" alt="картинка галереи" class="gallery__img">
             <div class="gallery__label">
               <h2 class="gallery__title">Гора Эльбрус</h2>
-              <img src="images/like.svg" alt="" class="gallery__like">
+              <button type="submit" class="gallery__like"></button>
             </div>
           </div>
           <div class="gallery__item">
             <img src="images/5.png" alt="картинка галереи" class="gallery__img">
             <div class="gallery__label">
               <h2 class="gallery__title">Домбай</h2>
-              <img src="images/like.svg" alt="" class="gallery__like">
+              <button type="submit" class="gallery__like"></button>
             </div>
           </div>
           <div class="gallery__item">
             <img src="images/6.png" alt="картинка галереи" class="gallery__img">
             <div class="gallery__label">
               <h2 class="gallery__title">Карачаево-Черкессия</h2>
-              <img src="images/like.svg" alt="" class="gallery__like">
+              <button type="submit" class="gallery__like"></button>
             </div>
           </div>
         </section>
@@ -72,17 +72,18 @@
       <footer class="footer">
         <p class="footer__author">&copy; 2020 Mesto Russia</p>
       </footer>
-      <div class="form-container form-container_hide">
-        <div class="form">
-          <form class="form__content">
-            <h3 class="form__title">Редактировать профиль</h3>
-            <input type="text" class="form__input form__input_name" value="">
-            <input type="text" class="form__input form__input_about" value="">
-            <input type="submit" class="form__submit" value="Сохранить">
+
+      <div class="dialog">
+        <div class="dialog__form">
+          <form action="" class="dialog__content" id="editProfileForm">
+            <h3 class="dialog__title">Редактировать профиль</h3>
+            <input type="text" class="dialog__input dialog__input_value_name" value="" name="inputName">
+            <input type="text" class="dialog__input dialog__input_value_about" value="" name="inputAbout">
+            <button type="submit" form="editProfileForm" class="dialog__submit">Сохранить</button>
           </form>
-          <img src="images/close-button.svg" alt="" class="form__close-button">
+          <button type="submit" class="dialog__close-button"></button>
         </div>
       </div>
-      <script src="script.js"></script>
+      <script src="scripts/script.js"></script>
   </body>
 </html>

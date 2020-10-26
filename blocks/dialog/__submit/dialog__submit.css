@@ -1,4 +1,4 @@
-.form__submit {
+.dialog__submit {
   background-color: black;
   color: white;
   border: none;
@@ -11,15 +11,16 @@
   display: block;
   margin: 48px auto 0 auto;
   border-radius: 2px;
+  outline: none;
 }
 
-.form__submit:hover {
+.dialog__submit:hover {
   opacity: 0.8;
   cursor: pointer;
 }
 
 @media (max-width: 700px) {
-  .form__submit {
+  .dialog__submit {
     padding: 14px 82px;
     font-size: 14px;
     line-height: 17px;

@@ -1,14 +1,19 @@
 .profile-container__add-button {
-  padding: 14px 64px;
   border: 2px solid #ffffff;
   box-sizing: border-box;
   border-radius: 2px;
   margin-top: 30px;
+  width: 150px;
+  height: 50px;
+  background: url(../../../images/add-button.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile-container__add-button:hover {
   opacity: 0.6;
   cursor: pointer;
+  outline: none;
 }
 
 @media (max-width: 660px) {
