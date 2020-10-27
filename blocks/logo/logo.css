@@ -12,5 +12,7 @@
 @media (max-width: 660px) {
   .logo {
     margin: 28px 0 31px 27px;
+    width: 104px;
+    height: 24px;
   }
 }

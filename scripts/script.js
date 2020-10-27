@@ -5,15 +5,14 @@ let profileSubTitle = document.querySelector('.profile__subtitle');
 
 let closeBtn = document.querySelector('.dialog__close-button');
 let popUp = document.querySelector('.dialog');
-let inputTitle = document.querySelector('.dialog__input_value_name');
-let inputSubTitle = document.querySelector('.dialog__input_value_about');
-
-let form = document.querySelector('.dialog__content');
+let form = document.forms.editProfileForm;
+let inputTitle = form.elements.inputName;
+let inputSubTitle = form.elements.inputAbout;
 
 function togglePopUp() {
 	if (!popUp.classList.contains('dialog_show')) {
 		inputTitle.value = profileTitle.textContent;
-	inputSubTitle.value = profileSubTitle.textContent;
+	  inputSubTitle.value = profileSubTitle.textContent;
 	}
 	popUp.classList.toggle('dialog_show');
 }
