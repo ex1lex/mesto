@@ -1,0 +1,10 @@
+.card-dialog__content {
+  margin: 90px auto 68px;
+  box-sizing: content-box;
+  position: relative;
+}
+
+@media (max-width: 660px) {
+  .card-dialog__content {
+  }
+}

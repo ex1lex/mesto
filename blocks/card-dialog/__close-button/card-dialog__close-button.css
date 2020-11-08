@@ -1,4 +1,4 @@
-.dialog__close-button {
+.card-dialog__close-button {
   position: absolute;
   top: 1%;
   right: 2%;
@@ -10,16 +10,16 @@
   background-position: center;
 }
 
-.dialog__close-button:hover {
+.card-dialog__close-button:hover {
   opacity: 0.6;
   cursor: pointer;
   outline: none;
 }
 
 @media (max-width: 700px) {
-  .dialog__close-button {
-    right: 5%;
-    top: 7%;
+  .card-dialog__close-button {
+    right: 1%;
+    top: 0%;
     width: 26px;
     height: 26px;
   }

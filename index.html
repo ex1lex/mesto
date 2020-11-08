@@ -25,48 +25,6 @@
           <button type="button" class="profile-container__add-button"></button>
         </section>
         <section class="gallery">
-          <div class="gallery__item">
-            <img src="images/1.png" alt="картинка галереи" class="gallery__img">
-            <div class="gallery__label">
-              <h2 class="gallery__title">Карачаевск</h2>
-              <button type="button" class="gallery__like"></button>
-            </div>
-          </div>
-          <div class="gallery__item">
-            <img src="images/2.png" alt="картинка галереи" class="gallery__img">
-            <div class="gallery__label">
-              <h2 class="gallery__title">Гора Эльбрус</h2>
-              <button type="button" class="gallery__like"></button>
-            </div>
-          </div>
-          <div class="gallery__item">
-            <img src="images/3.png" alt="картинка галереи" class="gallery__img">
-            <div class="gallery__label">
-              <h2 class="gallery__title">Домбай</h2>
-              <button type="button" class="gallery__like"></button>
-            </div>
-          </div>
-          <div class="gallery__item">
-            <img src="images/4.png" alt="картинка галереи" class="gallery__img">
-            <div class="gallery__label">
-              <h2 class="gallery__title">Гора Эльбрус</h2>
-              <button type="button" class="gallery__like"></button>
-            </div>
-          </div>
-          <div class="gallery__item">
-            <img src="images/5.png" alt="картинка галереи" class="gallery__img">
-            <div class="gallery__label">
-              <h2 class="gallery__title">Домбай</h2>
-              <button type="button" class="gallery__like"></button>
-            </div>
-          </div>
-          <div class="gallery__item">
-            <img src="images/6.png" alt="картинка галереи" class="gallery__img">
-            <div class="gallery__label">
-              <h2 class="gallery__title">Карачаево-Черкессия</h2>
-              <button type="button" class="gallery__like"></button>
-            </div>
-          </div>
         </section>
       </main>
       <footer class="footer">
@@ -84,6 +42,37 @@
           <button type="submit" class="dialog__close-button"></button>
         </div>
       </div>
+
+      <div class="dialog">
+        <div class="dialog__form">
+          <form action="#" class="dialog__content" id="addCardForm" name="addCardForm">
+            <h3 class="dialog__title">Новое место</h3>
+            <input type="text" class="dialog__input" value="" name="inputName" placeholder="Название">
+            <input type="text" class="dialog__input" value="" name="inputAbout" placeholder="Ссылка на картинку">
+            <button type="submit" form="addCardForm" class="dialog__submit">Создать</button>
+          </form>
+          <button type="submit" class="dialog__close-button"></button>
+        </div>
+      </div>
+
+      <div class="card-dialog">
+        <div class="card-dialog__content">
+          <img src="" alt="детальная картинка галереи" class="card-dialog__img">
+          <h2 class="card-dialog__label"></h2>
+          <button type="submit" class="card-dialog__close-button"></button>
+        </div>
+      </div>
+
+      <template id="card">
+        <div class="gallery__item">
+          <img src="" alt="картинка галереи" class="gallery__img">
+          <button class="gallery__trash" type="button"></button>
+          <div class="gallery__label">
+            <h2 class="gallery__title"></h2>
+            <button type="button" class="gallery__like"></button>
+          </div>
+        </div>
+      </template>
       <script src="scripts/script.js"></script>
   </body>
 </html>

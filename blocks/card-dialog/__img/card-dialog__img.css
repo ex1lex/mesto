@@ -1,0 +1,11 @@
+.card-dialog__img {
+  max-width: 75vw;
+  max-height: 75vh;
+  padding: 50px 50px 0 50px;
+}
+
+@media (max-width: 660px) {
+  .card-dialog__img {
+    padding: 30px 40px 0px 40px;
+  }
+}

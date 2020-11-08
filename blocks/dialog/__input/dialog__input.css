@@ -14,6 +14,8 @@
 
 @media (max-width: 700px) {
   .dialog__input {
-    width: 238px;
+    width: 200px;
+    padding: 0 0 12px 0;
+    margin-bottom: 20px;
   }
 }
