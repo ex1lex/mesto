@@ -32,7 +32,7 @@ const cardZoomCloseBtn = cardZoomPopUp.querySelector('.card-dialog__close-button
 const cardZoomImg = cardZoomPopUp.querySelector('.card-dialog__img');
 const cardZoomLabel = cardZoomPopUp.querySelector('.card-dialog__label');
 
-const cardTemplate = document.querySelector('#card').content;
+const cardTemplate = document.querySelector('#gallery__item').content;
 const gallery = document.querySelector('.gallery');
 
 const initialCards = [
