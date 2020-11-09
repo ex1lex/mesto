@@ -17,8 +17,8 @@ const addCardInputSubTitle = addCardForm.elements.inputAbout;
 
 const cardZoomPopUp = document.querySelector('.dialog_detail-card');
 const cardZoomCloseBtn = cardZoomPopUp.querySelector('.dialog__close-button_card');
-const cardZoomImg = cardZoomPopUp.querySelector('.dialog__img_card');
-const cardZoomLabel = cardZoomPopUp.querySelector('.dialog__title_card');
+const cardZoomImg = cardZoomPopUp.querySelector('.dialog__img-card');
+const cardZoomLabel = cardZoomPopUp.querySelector('.dialog__title-card');
 
 const cardTemplate = document.querySelector('#card').content;
 const gallery = document.querySelector('.gallery');

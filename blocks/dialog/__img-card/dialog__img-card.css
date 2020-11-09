@@ -1,11 +1,11 @@
-.dialog__img_card {
+.dialog__img-card {
   max-width: 75vw;
   max-height: 75vh;
   padding: 50px 50px 0 50px;
 }
 
 @media (max-width: 660px) {
-  .dialog__img_card {
+  .dialog__img-card {
     padding: 30px 40px 0px 40px;
   }
 }
