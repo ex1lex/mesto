@@ -31,7 +31,7 @@
         <p class="footer__author">&copy; 2020 Mesto Russia</p>
       </footer>
 
-      <div class="dialog">
+      <div class="dialog dialog__edit-profile">
         <div class="dialog__form">
           <form action="#" class="dialog__content" id="editProfileForm" name="editProfileForm">
             <h3 class="dialog__title">Редактировать профиль</h3>
@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <div class="dialog">
+      <div class="dialog dialog__add-card">
         <div class="dialog__form">
           <form action="#" class="dialog__content" id="addCardForm" name="addCardForm">
             <h3 class="dialog__title">Новое место</h3>
@@ -55,14 +55,15 @@
         </div>
       </div>
 
-      <div class="card-dialog">
-        <div class="card-dialog__content">
-          <img src="#" alt="детальная картинка галереи" class="card-dialog__img">
-          <h2 class="card-dialog__label"></h2>
-          <button type="submit" class="card-dialog__close-button"></button>
+      <div class="dialog dialog__detail-card">
+        <div class="dialog__content_card">
+          <img src="#" alt="детальная картинка галереи" class="dialog__img_card">
+          <h2 class="dialog__title_card"></h2>
+          <button type="submit" class="dialog__close-button_card"></button>
         </div>
       </div>
-      <template id="gallery__item" class="gallery">
+
+      <template id="card">
         <div class="gallery__item">
           <img src="#" alt="картинка галереи" class="gallery__img">
           <button class="gallery__trash" type="button"></button>

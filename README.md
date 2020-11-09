@@ -4,6 +4,12 @@
 
 Это проект о месте, под названием Россия
 
+**Используемые технологии**
+
+- Html
+- CSS
+- JavaScript
+
 **Figma**
 
 - [Ссылка на макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4?node-id=18915%3A2)

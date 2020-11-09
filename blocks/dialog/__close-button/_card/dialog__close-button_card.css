@@ -1,0 +1,26 @@
+.dialog__close-button_card {
+  position: absolute;
+  top: 1%;
+  right: 2%;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: url(../../../../images/close-button.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dialog__close-button_card:hover {
+  opacity: 0.6;
+  cursor: pointer;
+  outline: none;
+}
+
+@media (max-width: 700px) {
+  .dialog__close-button_card {
+    right: 1%;
+    top: 0%;
+    width: 26px;
+    height: 26px;
+  }
+}
