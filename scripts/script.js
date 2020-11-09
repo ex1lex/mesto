@@ -3,19 +3,19 @@ const editProfileBtn = document.querySelector('.profile__edit-button');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubTitle = document.querySelector('.profile__subtitle');
 
-const editProfilePopUp = document.querySelector('.dialog__edit-profile');
+const editProfilePopUp = document.querySelector('.dialog_edit-profile');
 const editProfileCloseBtn = editProfilePopUp.querySelector('.dialog__close-button');
 const editProfileForm = document.forms.editProfileForm;
 const editProfileInputTitle = editProfileForm.elements.inputName;
 const editProfileInputSubTitle = editProfileForm.elements.inputAbout;
 
-const addCardPopUp = document.querySelector('.dialog__add-card');
+const addCardPopUp = document.querySelector('.dialog_add-card');
 const addCardCloseBtn = addCardPopUp.querySelector('.dialog__close-button');
 const addCardForm = document.forms.addCardForm;
 const addCardInputTitle = addCardForm.elements.inputName;
 const addCardInputSubTitle = addCardForm.elements.inputAbout;
 
-const cardZoomPopUp = document.querySelector('.dialog__detail-card');
+const cardZoomPopUp = document.querySelector('.dialog_detail-card');
 const cardZoomCloseBtn = cardZoomPopUp.querySelector('.dialog__close-button_card');
 const cardZoomImg = cardZoomPopUp.querySelector('.dialog__img_card');
 const cardZoomLabel = cardZoomPopUp.querySelector('.dialog__title_card');
@@ -79,7 +79,7 @@ function addCard(name,link) {
 	cardLike.addEventListener('click', function(event) {
 		event.target.classList.toggle('gallery__like_active');
 	});
-	
+
 	return cardElement; 
 }
 //Заполнение галереи карточками
