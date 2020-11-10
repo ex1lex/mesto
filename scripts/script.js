@@ -52,10 +52,14 @@ const initialCards = [
 ];
 
 for (let index = 0; index < initialCards.length; index++) {
-	gallery.append(addCard(initialCards[index].name,initialCards[index].link));
+	gallery.append(createCard(initialCards[index].name,initialCards[index].link));
 }
 
-function addCard(name,link) {
+function togglePopUp(popUp) {
+	popUp.classList.toggle('dialog_show');
+}
+
+function createCard(name,link) {
 	const cardElement = cardTemplate.cloneNode(true);
 	const cardImg = cardElement.querySelector('.gallery__img');
 	const cardTrash = cardElement.querySelector('.gallery__trash');
@@ -84,58 +88,60 @@ function addCard(name,link) {
 }
 //Заполнение галереи карточками
 
+//Обновление полей в диалоговом окне редактирования профиля
+function resetUserEditPopUpValue() {
+	editProfileInputTitle.value = profileTitle.textContent;
+	editProfileInputSubTitle.value = profileSubTitle.textContent;
+}
+//Обновление полей в диалоговом окне редактирования профиля
+
 //клик по кнопке редактирования профиля
 function toggleUserEditPopUp() {
 	if (!editProfilePopUp.classList.contains('dialog_show')) {
-		editProfileInputTitle.value = profileTitle.textContent;
-	  editProfileInputSubTitle.value = profileSubTitle.textContent;
+		resetUserEditPopUpValue();
 	}
 	
-	//это решение было заявлено как обязательное другим ревьювером. две функции уже были до этого
-	editProfilePopUp.classList.toggle('dialog_show');
+	togglePopUp(editProfilePopUp);
 }
 //клик по кнопке редактирования профиля
 
 //клик по кнопке добавления новой карточки
 function toggleAddCardPopUp() {
-	addCardPopUp.classList.toggle('dialog_show');
+	togglePopUp(addCardPopUp);
 }
 //клик по кнопке добавления новой карточки
 
 //клик по карточке
 function toggleCardZoomPopUp() {
-	cardZoomPopUp.classList.toggle('dialog_show');
+	togglePopUp(cardZoomPopUp);
 }
 //клик по карточке
 
-//обработчик форм
-function formSubmitHandler (evt) {
+//обработчики форм
+function userEditFormHandler(evt) {
 	evt.preventDefault();
 
-	switch (evt.target.name) {
-		case "editProfileForm":
-			profileTitle.textContent = editProfileInputTitle.value;
-			profileSubTitle.textContent = editProfileInputSubTitle.value;
-			toggleUserEditPopUp();
-			break;
-		case "addCardForm":
-			gallery.prepend(addCard(addCardInputTitle.value,addCardInputSubTitle.value));
-			toggleAddCardPopUp();
-			addCardInputTitle.value='';
-			addCardInputSubTitle.value='';
-			break;
-		default:
-			break;
-	}
+  profileTitle.textContent = editProfileInputTitle.value;
+	profileSubTitle.textContent = editProfileInputSubTitle.value;
+	toggleUserEditPopUp();
 }
-//обработчик форм
+
+function addCardFormHandler(evt) {
+	evt.preventDefault();
+
+	gallery.prepend(createCard(addCardInputTitle.value,addCardInputSubTitle.value));
+	toggleAddCardPopUp();
+	addCardInputTitle.value='';
+	addCardInputSubTitle.value='';
+}
+//обработчики форм
 
 editProfileBtn.addEventListener('click', toggleUserEditPopUp);
 editProfileCloseBtn.addEventListener('click', toggleUserEditPopUp);
-editProfileForm.addEventListener('submit', formSubmitHandler);
+editProfileForm.addEventListener('submit', userEditFormHandler);
 
 addCardBtn.addEventListener('click', toggleAddCardPopUp);
 addCardCloseBtn.addEventListener('click', toggleAddCardPopUp);
-addCardForm.addEventListener('submit', formSubmitHandler);
+addCardForm.addEventListener('submit', addCardFormHandler);
 
 cardZoomCloseBtn.addEventListener('click', toggleCardZoomPopUp);
