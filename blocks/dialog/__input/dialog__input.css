@@ -9,13 +9,12 @@
   font-size: 14px;
   line-height: 17px;
   outline: none;
-  margin: 0 auto 29px auto;
+  margin: 0 auto 5px auto;
 }
 
 @media (max-width: 700px) {
   .dialog__input {
     width: 200px;
     padding: 0 0 12px 0;
-    margin-bottom: 20px;
   }
 }
