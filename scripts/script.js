@@ -29,6 +29,15 @@ const cardZoomLabel = cardZoomPopUp.querySelector(".dialog__title-card");
 const cardTemplate = document.querySelector("#card").content;
 const gallery = document.querySelector(".gallery");
 
+const formsOptions = {
+  formSelector: ".dialog__content",
+  inputSelector: ".dialog__input",
+  submitButtonSelector: ".dialog__submit",
+  inactiveButtonClass: "dialog__submit_disabled",
+  inputErrorClass: "dialog__input_error",
+  errorClass: "dialog__error-label_show",
+};
+
 //Заполнение галереи карточками
 const initialCards = [
   {
@@ -172,6 +181,8 @@ dialogs.forEach(function (dialog) {
     });
   });
 });
+
+enableValidation(formsOptions);
 
 editProfileBtn.addEventListener("click", toggleUserEditPopUp);
 editProfileCloseBtn.addEventListener("click", toggleUserEditPopUp);

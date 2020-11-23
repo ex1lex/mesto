@@ -1,6 +1,6 @@
 .dialog__error-label {
   display: block;
-  height: 12px;
+  min-height: 12px;
   width: 358px;
   font-weight: normal;
   font-size: 12px;

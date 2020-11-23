@@ -1,62 +1,68 @@
-function showError(formElement, inputElement, errorMessage) {
+function showError(options, formElement, inputElement, errorMessage) {
   const errorElement = formElement.querySelector(`#${inputElement.name}Error`);
-  const btn = formElement.querySelector(".dialog__submit");
-  btn.classList.add("dialog__submit_disabled");
+  const btn = formElement.querySelector(options.submitButtonSelector);
+  btn.classList.add(options.inactiveButtonClass);
   btn.disabled = true;
-  inputElement.classList.add("dialog__input_error");
+  inputElement.classList.add(options.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add("dialog__error-label_show");
+  errorElement.classList.add(options.errorClass);
 }
 
-function hideError(formElement, inputElement) {
+function hideError(options, formElement, inputElement) {
   const errorElement = formElement.querySelector(`#${inputElement.name}Error`);
-  const btn = formElement.querySelector(".dialog__submit");
-  btn.classList.remove("dialog__submit_disabled");
+  const btn = formElement.querySelector(options.submitButtonSelector);
+  btn.classList.remove(options.inactiveButtonClass);
   btn.disabled = false;
-  inputElement.classList.remove("dialog__input_error");
-  errorElement.classList.remove("dialog__error-label_show");
+  inputElement.classList.remove(options.inputErrorClass);
+  errorElement.classList.remove(options.errorClass);
   errorElement.textContent = "";
 }
 
-function resetError(formElement) {
+function resetError(options, formElement) {
   const formInput = Array.from(
-    document.querySelectorAll(".dialog__input_error")
+    document.querySelectorAll(options.inputErrorClass)
   );
-  const btn = formElement.querySelector(".dialog__submit");
-  btn.classList.remove("dialog__submit_disabled");
+  const btn = formElement.querySelector(options.submitButtonSelector);
+  btn.classList.remove(options.inactiveButtonClass);
   btn.disabled = false;
   formInput.forEach(function (input) {
     const errorElement = formElement.querySelector(`#${input.name}Error`);
-    input.classList.remove("dialog__input_error");
-    errorElement.classList.remove("dialog__error-label_show");
+    input.classList.remove(options.inputErrorClass);
+    errorElement.classList.remove(options.errorClass);
     errorElement.textContent = "";
   });
 }
 
-function checkInputValidity(formElement, inputElement) {
+function checkInputValidity(options, formElement, inputElement) {
   if (!inputElement.validity.valid) {
-    showError(formElement, inputElement, inputElement.validationMessage);
+    showError(
+      options,
+      formElement,
+      inputElement,
+      inputElement.validationMessage
+    );
   } else {
-    hideError(formElement, inputElement);
+    hideError(options, formElement, inputElement);
   }
 }
 
-function setEventListeners(formElement) {
-  const inputList = Array.from(formElement.querySelectorAll(".dialog__input"));
+function setEventListeners(options, formElement) {
+  const inputList = Array.from(
+    formElement.querySelectorAll(options.inputSelector)
+  );
   inputList.forEach(function (inputElement) {
     inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement);
+      checkInputValidity(options, formElement, inputElement);
     });
   });
 }
 
-function enableValidation() {
-  let formList = Array.from(document.querySelectorAll(".dialog__content"));
+function enableValidation(options) {
+  let formList = Array.from(document.querySelectorAll(options.formSelector));
   formList.forEach(function (formElement) {
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();
     });
-    setEventListeners(formElement);
+    setEventListeners(options, formElement);
   });
 }
-enableValidation();
