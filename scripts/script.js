@@ -16,7 +16,7 @@ const editProfileInputSubTitle = editProfileForm.elements.inputAbout;
 const addCardPopUp = document.querySelector(".dialog_add-card");
 const addCardCloseBtn = addCardPopUp.querySelector(".dialog__close-button");
 const addCardForm = document.forms.addCardForm;
-const addCardInputTitle = addCardForm.elements.inputName;
+const addCardInputTitle = addCardForm.elements.inputTitle;
 const addCardInputUrl = addCardForm.elements.inputImageUrl;
 
 const cardZoomPopUp = document.querySelector(".dialog_detail-card");
