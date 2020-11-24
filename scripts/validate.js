@@ -22,9 +22,11 @@ function resetForm(options, formElement) {
   const formInputs = Array.from(
     formElement.querySelectorAll(options.inputSelector)
   );
-  const btn = formElement.querySelector(options.submitButtonSelector);
-  btn.classList.remove(options.inactiveButtonClass);
-  btn.disabled = false;
+  if (formElement.id === "editProfileForm") {
+    const btn = formElement.querySelector(options.submitButtonSelector);
+    btn.classList.remove(options.inactiveButtonClass);
+    btn.disabled = false;
+  }
   formInputs.forEach(function (input) {
     const errorElement = formElement.querySelector(`#${input.name}Error`);
     input.classList.remove(options.inputErrorClass);

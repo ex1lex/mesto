@@ -39,25 +39,25 @@ const formsOptions = {
 };
 
 //открытие popUp
+function popUpOverlayClick(evt) {
+  if (
+    evt.target.classList.contains("dialog") ||
+    evt.target.classList.contains("dialog__form")
+  ) {
+    togglePopUp(popUp);
+  }
+}
+
+function popUpEscapeClick(evt) {
+  evt.preventDefault;
+  const popUp = document.querySelector(".dialog_show");
+  if (popUp && evt.key === "Escape") {
+    togglePopUp(popUp);
+  }
+}
+
 function togglePopUp(popUp) {
   popUp.classList.toggle("dialog_show");
-
-  function popUpOverlayClick(evt) {
-    if (
-      evt.target.classList.contains("dialog") ||
-      evt.target.classList.contains("dialog__form")
-    ) {
-      togglePopUp(popUp);
-    }
-  }
-
-  function popUpEscapeClick(evt) {
-    evt.preventDefault;
-    const popUp = document.querySelector(".dialog_show");
-    if (popUp && evt.key === "Escape") {
-      togglePopUp(popUp);
-    }
-  }
 
   if (popUp.classList.contains("dialog_show")) {
     document.addEventListener("keydown", popUpEscapeClick);
