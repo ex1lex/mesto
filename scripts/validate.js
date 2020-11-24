@@ -18,16 +18,17 @@ function hideError(options, formElement, inputElement) {
   errorElement.textContent = "";
 }
 
-function resetError(options, formElement) {
-  const formInput = Array.from(
-    document.querySelectorAll(options.inputErrorClass)
+function resetForm(options, formElement) {
+  const formInputs = Array.from(
+    formElement.querySelectorAll(options.inputSelector)
   );
   const btn = formElement.querySelector(options.submitButtonSelector);
   btn.classList.remove(options.inactiveButtonClass);
   btn.disabled = false;
-  formInput.forEach(function (input) {
+  formInputs.forEach(function (input) {
     const errorElement = formElement.querySelector(`#${input.name}Error`);
     input.classList.remove(options.inputErrorClass);
+    input.value = "";
     errorElement.classList.remove(options.errorClass);
     errorElement.textContent = "";
   });

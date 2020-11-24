@@ -38,6 +38,37 @@ const formsOptions = {
   errorClass: "dialog__error-label_show",
 };
 
+//открытие popUp
+function togglePopUp(popUp) {
+  popUp.classList.toggle("dialog_show");
+
+  function popUpOverlayClick(evt) {
+    if (
+      evt.target.classList.contains("dialog") ||
+      evt.target.classList.contains("dialog__form")
+    ) {
+      togglePopUp(popUp);
+    }
+  }
+
+  function popUpEscapeClick(evt) {
+    evt.preventDefault;
+    const popUp = document.querySelector(".dialog_show");
+    if (popUp && evt.key === "Escape") {
+      togglePopUp(popUp);
+    }
+  }
+
+  if (popUp.classList.contains("dialog_show")) {
+    document.addEventListener("keydown", popUpEscapeClick);
+    popUp.addEventListener("click", popUpOverlayClick);
+  } else {
+    document.removeEventListener("keydown", popUpEscapeClick);
+    popUp.removeEventListener("click", popUpOverlayClick);
+  }
+}
+//открытие popUp
+
 //Заполнение галереи карточками
 const initialCards = [
   {
@@ -72,16 +103,6 @@ const initialCards = [
   },
 ];
 
-for (let index = 0; index < initialCards.length; index++) {
-  gallery.append(
-    createCard(initialCards[index].name, initialCards[index].link)
-  );
-}
-
-function togglePopUp(popUp) {
-  popUp.classList.toggle("dialog_show");
-}
-
 function createCard(name, link) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImg = cardElement.querySelector(".gallery__img");
@@ -90,8 +111,10 @@ function createCard(name, link) {
   const cardLike = cardElement.querySelector(".gallery__like");
 
   cardImg.src = link;
+  cardImg.alt = "картинка галереи";
   cardImg.addEventListener("click", function () {
     cardZoomImg.src = link;
+    cardZoomImg.alt = "детальная картинка галереи";
     cardZoomLabel.textContent = name;
     toggleCardZoomPopUp();
   });
@@ -109,6 +132,12 @@ function createCard(name, link) {
 
   return cardElement;
 }
+
+for (let index = 0; index < initialCards.length; index++) {
+  gallery.append(
+    createCard(initialCards[index].name, initialCards[index].link)
+  );
+}
 //Заполнение галереи карточками
 
 //Обновление полей в диалоговом окне редактирования профиля
@@ -121,18 +150,21 @@ function resetUserEditPopUpValue() {
 //клик по кнопке редактирования профиля
 function toggleUserEditPopUp() {
   if (!editProfilePopUp.classList.contains("dialog_show")) {
+    resetForm(formsOptions, editProfileForm);
     resetUserEditPopUpValue();
   }
 
   togglePopUp(editProfilePopUp);
-  resetError(editProfileForm);
 }
 //клик по кнопке редактирования профиля
 
 //клик по кнопке добавления новой карточки
 function toggleAddCardPopUp() {
+  if (!addCardPopUp.classList.contains("dialog_show")) {
+    resetForm(formsOptions, addCardForm);
+  }
+
   togglePopUp(addCardPopUp);
-  resetError(addCardForm);
 }
 //клик по кнопке добавления новой карточки
 
@@ -160,27 +192,6 @@ function addCardFormHandler(evt) {
   addCardInputUrl.value = "";
 }
 //обработчики форм
-
-dialogs.forEach(function (dialog) {
-  dialog.addEventListener("click", function (evt) {
-    if (
-      evt.target.classList.contains("dialog") ||
-      evt.target.classList.contains("dialog__form")
-    ) {
-      togglePopUp(dialog);
-    }
-  });
-
-  const inputList = Array.from(dialog.querySelectorAll(".dialog__input"));
-  inputList.forEach(function (inputElement) {
-    inputElement.addEventListener("keydown", function (evt) {
-      evt.preventDefault;
-      if (evt.key === "Escape") {
-        togglePopUp(dialog);
-      }
-    });
-  });
-});
 
 enableValidation(formsOptions);
 
