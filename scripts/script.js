@@ -1,9 +1,8 @@
+import { Card } from "./Card.js";
 const addCardBtn = document.querySelector(".profile-container__add-button");
 const editProfileBtn = document.querySelector(".profile__edit-button");
 const profileTitle = document.querySelector(".profile__title");
 const profileSubTitle = document.querySelector(".profile__subtitle");
-
-const dialogs = Array.from(document.querySelectorAll(".dialog"));
 
 const editProfilePopUp = document.querySelector(".dialog_edit-profile");
 const editProfileCloseBtn = editProfilePopUp.querySelector(
@@ -23,53 +22,8 @@ const cardZoomPopUp = document.querySelector(".dialog_detail-card");
 const cardZoomCloseBtn = cardZoomPopUp.querySelector(
   ".dialog__close-button_card"
 );
-const cardZoomImg = cardZoomPopUp.querySelector(".dialog__img-card");
-const cardZoomLabel = cardZoomPopUp.querySelector(".dialog__title-card");
-
-const cardTemplate = document.querySelector("#card").content;
 const gallery = document.querySelector(".gallery");
 
-const formsOptions = {
-  formSelector: ".dialog__content",
-  inputSelector: ".dialog__input",
-  submitButtonSelector: ".dialog__submit",
-  inactiveButtonClass: "dialog__submit_disabled",
-  inputErrorClass: "dialog__input_error",
-  errorClass: "dialog__error-label_show",
-};
-
-//открытие popUp
-function popUpOverlayClick(evt) {
-  if (
-    evt.target.classList.contains("dialog") ||
-    evt.target.classList.contains("dialog__form")
-  ) {
-    togglePopUp(popUp);
-  }
-}
-
-function popUpEscapeClick(evt) {
-  evt.preventDefault;
-  const popUp = document.querySelector(".dialog_show");
-  if (popUp && evt.key === "Escape") {
-    togglePopUp(popUp);
-  }
-}
-
-function togglePopUp(popUp) {
-  popUp.classList.toggle("dialog_show");
-
-  if (popUp.classList.contains("dialog_show")) {
-    document.addEventListener("keydown", popUpEscapeClick);
-    popUp.addEventListener("click", popUpOverlayClick);
-  } else {
-    document.removeEventListener("keydown", popUpEscapeClick);
-    popUp.removeEventListener("click", popUpOverlayClick);
-  }
-}
-//открытие popUp
-
-//Заполнение галереи карточками
 const initialCards = [
   {
     name: "Архыз",
@@ -103,42 +57,53 @@ const initialCards = [
   },
 ];
 
-function createCard(name, link) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImg = cardElement.querySelector(".gallery__img");
-  const cardTrash = cardElement.querySelector(".gallery__trash");
-  const cardTitle = cardElement.querySelector(".gallery__title");
-  const cardLike = cardElement.querySelector(".gallery__like");
+const cardOptions = {
+  cardSelector: "#card",
+  popUpSelector: ".dialog_detail-card",
+  toggleCardZoom: toggleCardZoomPopUp,
+};
 
-  cardImg.src = link;
-  cardImg.alt = "картинка галереи";
-  cardImg.addEventListener("click", function () {
-    cardZoomImg.src = link;
-    cardZoomImg.alt = "детальная картинка галереи";
-    cardZoomLabel.textContent = name;
-    toggleCardZoomPopUp();
-  });
+const formsOptions = {
+  formSelector: ".dialog__content",
+  inputSelector: ".dialog__input",
+  submitButtonSelector: ".dialog__submit",
+  inactiveButtonClass: "dialog__submit_disabled",
+  inputErrorClass: "dialog__input_error",
+  errorClass: "dialog__error-label_show",
+};
 
-  cardTrash.addEventListener("click", function (event) {
-    const card = event.target.closest(".gallery__item");
-    card.remove();
-  });
-
-  cardTitle.textContent = name;
-
-  cardLike.addEventListener("click", function (event) {
-    event.target.classList.toggle("gallery__like_active");
-  });
-
-  return cardElement;
+//открытие popUp
+function popUpOverlayClick(evt) {
+  const popUp = document.querySelector(".dialog_show");
+  if (
+    evt.target.classList.contains("dialog") ||
+    evt.target.classList.contains("dialog__form") ||
+    evt.target.classList.contains("dialog__content-card")
+  ) {
+    togglePopUp(popUp);
+  }
 }
 
-for (let index = 0; index < initialCards.length; index++) {
-  gallery.append(
-    createCard(initialCards[index].name, initialCards[index].link)
-  );
+function popUpEscapeClick(evt) {
+  evt.preventDefault;
+  const popUp = document.querySelector(".dialog_show");
+  if (popUp && evt.key === "Escape") {
+    togglePopUp(popUp);
+  }
 }
-//Заполнение галереи карточками
+
+function togglePopUp(popUp) {
+  popUp.classList.toggle("dialog_show");
+
+  if (popUp.classList.contains("dialog_show")) {
+    document.addEventListener("keydown", popUpEscapeClick);
+    popUp.addEventListener("click", popUpOverlayClick);
+  } else {
+    document.removeEventListener("keydown", popUpEscapeClick);
+    popUp.removeEventListener("click", popUpOverlayClick);
+  }
+}
+//открытие popUp
 
 //Обновление полей в диалоговом окне редактирования профиля
 function resetUserEditPopUpValue() {
@@ -192,6 +157,15 @@ function addCardFormHandler(evt) {
   addCardInputUrl.value = "";
 }
 //обработчики форм
+
+//Заполнение галереи карточками
+for (let index = 0; index < initialCards.length; index++) {
+  cardOptions.name = initialCards[index].name;
+  cardOptions.link = initialCards[index].link;
+  const card = new Card(cardOptions);
+  gallery.append(card.generateCard());
+}
+//Заполнение галереи карточками
 
 enableValidation(formsOptions);
 
