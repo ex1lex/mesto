@@ -167,7 +167,10 @@ function userEditFormHandler(evt) {
 function addCardFormHandler(evt) {
   evt.preventDefault();
 
-  gallery.prepend(createCard(addCardInputTitle.value, addCardInputUrl.value));
+  cardOptions.name = addCardInputTitle.value;
+  cardOptions.link = addCardInputUrl.value;
+  const card = new Card(cardOptions);
+  gallery.prepend(card.generateCard());
   toggleAddCardPopUp();
   addCardInputTitle.value = "";
   addCardInputUrl.value = "";
