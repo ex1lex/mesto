@@ -1,4 +1,6 @@
 import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+
 const addCardBtn = document.querySelector(".profile-container__add-button");
 const editProfileBtn = document.querySelector(".profile__edit-button");
 const profileTitle = document.querySelector(".profile__title");
@@ -63,14 +65,28 @@ const cardOptions = {
   toggleCardZoom: toggleCardZoomPopUp,
 };
 
-const formsOptions = {
-  formSelector: ".dialog__content",
+const formEditProfileOptions = {
+  formSelector: document.querySelector("#editProfileForm"),
   inputSelector: ".dialog__input",
   submitButtonSelector: ".dialog__submit",
   inactiveButtonClass: "dialog__submit_disabled",
   inputErrorClass: "dialog__input_error",
   errorClass: "dialog__error-label_show",
 };
+
+const formAddCardOptions = {
+  formSelector: document.querySelector("#addCardForm"),
+  inputSelector: ".dialog__input",
+  submitButtonSelector: ".dialog__submit",
+  inactiveButtonClass: "dialog__submit_disabled",
+  inputErrorClass: "dialog__input_error",
+  errorClass: "dialog__error-label_show",
+};
+
+const editProfileFormValidator = new FormValidator(formEditProfileOptions);
+editProfileFormValidator.enableValidation();
+const addCardFormValidator = new FormValidator(formAddCardOptions);
+addCardFormValidator.enableValidation();
 
 //открытие popUp
 function popUpOverlayClick(evt) {
@@ -115,7 +131,7 @@ function resetUserEditPopUpValue() {
 //клик по кнопке редактирования профиля
 function toggleUserEditPopUp() {
   if (!editProfilePopUp.classList.contains("dialog_show")) {
-    resetForm(formsOptions, editProfileForm);
+    editProfileFormValidator.resetForm(true);
     resetUserEditPopUpValue();
   }
 
@@ -126,7 +142,7 @@ function toggleUserEditPopUp() {
 //клик по кнопке добавления новой карточки
 function toggleAddCardPopUp() {
   if (!addCardPopUp.classList.contains("dialog_show")) {
-    resetForm(formsOptions, addCardForm);
+    addCardFormValidator.resetForm(false);
   }
 
   togglePopUp(addCardPopUp);
@@ -166,8 +182,6 @@ for (let index = 0; index < initialCards.length; index++) {
   gallery.append(card.generateCard());
 }
 //Заполнение галереи карточками
-
-enableValidation(formsOptions);
 
 editProfileBtn.addEventListener("click", toggleUserEditPopUp);
 editProfileCloseBtn.addEventListener("click", toggleUserEditPopUp);
