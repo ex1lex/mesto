@@ -26,15 +26,8 @@ export class Card {
       .classList.toggle("gallery__like_active");
   }
 
-  _imgClick() {
-    const popUp = this._popUpElement;
-    const cardZoomImg = popUp.querySelector(".dialog__img-card");
-    const cardZoomLabel = popUp.querySelector(".dialog__title-card");
-
-    cardZoomImg.src = this._link;
-    cardZoomImg.alt = "детальная картинка галереи";
-    cardZoomLabel.textContent = this._name;
-    this._toggleCardZoom();
+  _imgClick(evt) {
+    this._toggleCardZoom(evt);
   }
 
   _setEventListeners() {
@@ -53,8 +46,8 @@ export class Card {
 
     this._element
       .querySelector(".gallery__img")
-      .addEventListener("click", () => {
-        this._imgClick();
+      .addEventListener("click", (evt) => {
+        this._imgClick(evt);
       });
   }
 
@@ -64,7 +57,7 @@ export class Card {
     const cardTitle = element.querySelector(".gallery__title");
 
     cardImg.src = this._link;
-    cardImg.alt = "картинка галереи";
+    cardImg.alt = this._name;
 
     cardTitle.textContent = this._name;
 
