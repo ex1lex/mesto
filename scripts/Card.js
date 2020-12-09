@@ -1,10 +1,9 @@
 export class Card {
-  constructor(options) {
-    this._cardSelector = options.cardSelector;
-    this._popUpElement = document.querySelector(options.popUpSelector);
-    this._toggleCardZoom = options.toggleCardZoom;
-    this._name = options.name;
-    this._link = options.link;
+  constructor(name, link, cardSelector, toggleCardZoom) {
+    this._cardSelector = cardSelector;
+    this._toggleCardZoom = toggleCardZoom;
+    this._name = name;
+    this._link = link;
   }
 
   _getTemplate() {
@@ -26,10 +25,6 @@ export class Card {
       .classList.toggle("gallery__like_active");
   }
 
-  _imgClick(evt) {
-    this._toggleCardZoom(evt);
-  }
-
   _setEventListeners() {
     this._element
       .querySelector(".gallery__trash")
@@ -47,7 +42,7 @@ export class Card {
     this._element
       .querySelector(".gallery__img")
       .addEventListener("click", (evt) => {
-        this._imgClick(evt);
+        this._toggleCardZoom(evt);
       });
   }
 

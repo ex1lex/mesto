@@ -59,12 +59,6 @@ const initialCards = [
   },
 ];
 
-const cardOptions = {
-  cardSelector: "#card",
-  popUpSelector: ".dialog_detail-card",
-  toggleCardZoom: toggleCardZoomPopUp,
-};
-
 const formEditProfileOptions = {
   formSelector: document.querySelector("#editProfileForm"),
   inputSelector: ".dialog__input",
@@ -89,7 +83,7 @@ const addCardFormValidator = new FormValidator(formAddCardOptions);
 addCardFormValidator.enableValidation();
 
 //открытие popUp
-function popUpOverlayClick(evt) {
+function closePopupByOverlay(evt) {
   const popUp = document.querySelector(".dialog_show");
   if (
     evt.target.classList.contains("dialog") ||
@@ -100,7 +94,7 @@ function popUpOverlayClick(evt) {
   }
 }
 
-function closePopupByOverlay(evt) {
+function closePopupByEsc(evt) {
   evt.preventDefault;
   const popUp = document.querySelector(".dialog_show");
   if (popUp && evt.key === "Escape") {
@@ -112,11 +106,11 @@ function togglePopUp(popUp) {
   popUp.classList.toggle("dialog_show");
 
   if (popUp.classList.contains("dialog_show")) {
-    document.addEventListener("keydown", closePopupByOverlay);
-    popUp.addEventListener("click", popUpOverlayClick);
+    document.addEventListener("keydown", closePopupByEsc);
+    popUp.addEventListener("click", closePopupByOverlay);
   } else {
-    document.removeEventListener("keydown", closePopupByOverlay);
-    popUp.removeEventListener("click", popUpOverlayClick);
+    document.removeEventListener("keydown", closePopupByEsc);
+    popUp.removeEventListener("click", closePopupByOverlay);
   }
 }
 //открытие popUp
@@ -175,17 +169,15 @@ function handleUserEditFormSubmit(evt) {
   toggleUserEditPopUp();
 }
 
-function createNewCard() {
-  const card = new Card(cardOptions);
+function createNewCard(name, link) {
+  const card = new Card(name, link, "#card", toggleCardZoomPopUp);
   gallery.prepend(card.generateCard());
 }
 
-function addCardFormHandler(evt) {
+function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
 
-  cardOptions.name = addCardInputTitle.value;
-  cardOptions.link = addCardInputUrl.value;
-  createNewCard();
+  createNewCard(addCardInputTitle.value, addCardInputUrl.value);
   toggleAddCardPopUp();
   addCardInputTitle.value = "";
   addCardInputUrl.value = "";
@@ -193,11 +185,9 @@ function addCardFormHandler(evt) {
 //обработчики форм
 
 //Заполнение галереи карточками
-for (let index = 0; index < initialCards.length; index++) {
-  cardOptions.name = initialCards[index].name;
-  cardOptions.link = initialCards[index].link;
-  createNewCard();
-}
+initialCards.forEach((card) => {
+  createNewCard(card.name, card.link);
+});
 //Заполнение галереи карточками
 
 editProfileBtn.addEventListener("click", toggleUserEditPopUp);
@@ -206,6 +196,8 @@ editProfileForm.addEventListener("submit", handleUserEditFormSubmit);
 
 addCardBtn.addEventListener("click", toggleAddCardPopUp);
 addCardCloseBtn.addEventListener("click", toggleAddCardPopUp);
-addCardForm.addEventListener("submit", addCardFormHandler);
+addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
-cardZoomCloseBtn.addEventListener("click", toggleCardZoomPopUp);
+cardZoomCloseBtn.addEventListener("click", function () {
+  togglePopUp(cardZoomPopUp);
+});
