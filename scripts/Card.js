@@ -1,7 +1,7 @@
 export class Card {
-  constructor(name, link, cardSelector, toggleCardZoom) {
+  constructor(name, link, cardSelector, handleCardClick) {
     this._cardSelector = cardSelector;
-    this._toggleCardZoom = toggleCardZoom;
+    this._handleCardClick = handleCardClick;
     this._name = name;
     this._link = link;
   }
@@ -42,7 +42,7 @@ export class Card {
     this._element
       .querySelector(".gallery__img")
       .addEventListener("click", (evt) => {
-        this._toggleCardZoom(evt);
+        this._handleCardClick(evt);
       });
   }
 
