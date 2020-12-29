@@ -35,7 +35,6 @@ export class Card {
     this._element
       .querySelector(".gallery__like")
       .addEventListener("click", () => {
-        console.log("!");
         this._likeClick();
       });
 

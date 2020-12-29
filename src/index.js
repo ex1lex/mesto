@@ -1,10 +1,11 @@
-import * as data from "./Constants.js";
-import { Card } from "./Card.js";
-import { Section } from "./Section.js";
-import { FormValidator } from "./FormValidator.js";
-import { PopupWithImage } from "./PopupWithImage.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-import { UserInfo } from "./UserInfo.js";
+import "./pages/index.css";
+import * as data from "./scripts/Constants.js";
+import { Card } from "./scripts/Card.js";
+import { Section } from "./scripts/Section.js";
+import { FormValidator } from "./scripts/FormValidator.js";
+import { PopupWithImage } from "./scripts/PopupWithImage.js";
+import { PopupWithForm } from "./scripts/PopupWithForm.js";
+import { UserInfo } from "./scripts/UserInfo.js";
 
 const user = new UserInfo(data.userSelectors);
 
@@ -12,6 +13,22 @@ const editProfileFormValidator = new FormValidator(data.formEditProfileOptions);
 editProfileFormValidator.enableValidation();
 const addCardFormValidator = new FormValidator(data.formAddCardOptions);
 addCardFormValidator.enableValidation();
+
+//обработчики форм
+const handleUserEditFormSubmit = (values) => {
+  user.setUserInfo(values);
+};
+
+const handleAddCardFormSubmit = (values) => {
+  const card = new Card(
+    values.inputTitle,
+    values.inputImageUrl,
+    "#card",
+    toggleCardZoomPopUp
+  );
+  section.addItem(card.generateCard());
+};
+//обработчики форм
 
 const popUpUserForm = new PopupWithForm(
   ".dialog_edit-profile",
@@ -33,16 +50,16 @@ const popUpImage = new PopupWithImage(".dialog_detail-card");
 popUpImage.setEventListeners();
 
 //клик по карточке
-function toggleCardZoomPopUp(evt) {
+const toggleCardZoomPopUp = (evt) => {
   popUpImage.open(evt);
-}
+};
 //клик по карточке
 
 //Заполнение галереи карточками
-function createNewCard({ name, link }) {
+const createNewCard = ({ name, link }) => {
   const card = new Card(name, link, "#card", toggleCardZoomPopUp);
   data.gallery.prepend(card.generateCard());
-}
+};
 
 const sectionOptions = { items: data.initialCards, renderer: createNewCard };
 const section = new Section(sectionOptions, ".gallery");
@@ -61,21 +78,3 @@ data.addCardBtn.addEventListener("click", () => {
   popUpAddCardForm.open();
 });
 //клик по кнопке добавления новой карточки
-
-//обработчики форм
-function handleUserEditFormSubmit(values) {
-  user.setUserInfo(values);
-  this.close();
-}
-
-function handleAddCardFormSubmit(values) {
-  const card = new Card(
-    values.inputTitle,
-    values.inputImageUrl,
-    "#card",
-    toggleCardZoomPopUp
-  );
-  section.addItem(card.generateCard());
-  this.close();
-}
-//обработчики форм
