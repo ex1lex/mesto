@@ -3,8 +3,6 @@ export class UserInfo {
     this._name = document.querySelector(selectorName);
     this._about = document.querySelector(selectorAbout);
     this._values = {};
-    this._profileTitle = document.querySelector(".profile__title");
-    this._profileSubtitle = document.querySelector(".profile__subtitle");
   }
 
   getUserInfo() {
@@ -14,7 +12,7 @@ export class UserInfo {
   }
 
   setUserInfo({ inputName, inputAbout }) {
-    this._profileTitle.textContent = inputName;
-    this._profileSubtitle.textContent = inputAbout;
+    this._name.textContent = inputName;
+    this._about.textContent = inputAbout;
   }
 }

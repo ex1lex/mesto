@@ -2,6 +2,7 @@ export default class Popup {
   constructor(popUpSelector) {
     this._popUp = document.querySelector(popUpSelector);
     this._closeBtn = this._popUp.querySelector(".dialog__close-button");
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   open() {
@@ -10,6 +11,7 @@ export default class Popup {
 
   close() {
     this._popUp.classList.remove("dialog_show");
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 
   _closeByOverlay(evt) {
@@ -34,10 +36,7 @@ export default class Popup {
     this._popUp.addEventListener("click", (evt) => {
       this._closeByOverlay(evt);
     });
-    document.addEventListener("keydown", (evt) => {
-      this._handleEscClose(evt);
-      //анонимную функцию невозможно удалить
-    });
+    document.addEventListener("keydown", this._handleEscClose);
     this._closeBtn.addEventListener("click", (evt) => {
       this.close();
     });
