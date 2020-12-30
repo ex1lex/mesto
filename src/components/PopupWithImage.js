@@ -8,7 +8,7 @@ export class PopupWithImage extends Popup {
 
   open(evt) {
     this._img.src = evt.target.src;
-    this._img.alt = "детальная картинка галереи";
+    this._img.alt = evt.target.alt;
     this._label.textContent = evt.target.alt;
     super.open();
   }

@@ -1,11 +1,11 @@
-import "./pages/index.css";
-import * as data from "./scripts/Constants.js";
-import { Card } from "./scripts/Card.js";
-import { Section } from "./scripts/Section.js";
-import { FormValidator } from "./scripts/FormValidator.js";
-import { PopupWithImage } from "./scripts/PopupWithImage.js";
-import { PopupWithForm } from "./scripts/PopupWithForm.js";
-import { UserInfo } from "./scripts/UserInfo.js";
+import "./index.css";
+import * as data from "../utils/Constants.js";
+import { Card } from "../components/Card.js";
+import { Section } from "../components/Section.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { UserInfo } from "../components/UserInfo.js";
 
 const user = new UserInfo(data.userSelectors);
 
@@ -33,16 +33,14 @@ const handleAddCardFormSubmit = (values) => {
 const popUpUserForm = new PopupWithForm(
   ".dialog_edit-profile",
   handleUserEditFormSubmit,
-  editProfileFormValidator,
-  true
+  () => editProfileFormValidator.resetForm(true)
 );
 popUpUserForm.setEventListeners();
 
 const popUpAddCardForm = new PopupWithForm(
   ".dialog_add-card",
   handleAddCardFormSubmit,
-  addCardFormValidator,
-  false
+  () => addCardFormValidator.resetForm(false)
 );
 popUpAddCardForm.setEventListeners();
 

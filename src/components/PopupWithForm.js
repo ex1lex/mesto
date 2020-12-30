@@ -1,14 +1,13 @@
 import Popup from "./Popup.js";
 export class PopupWithForm extends Popup {
-  constructor(popUpSelector, handleFormSubmit, formValidator, resetFormCheck) {
+  constructor(popUpSelector, handleFormSubmit, formValidatorReset) {
     super(popUpSelector);
-    this._formValidator = formValidator;
-    this._resetFormCheck = resetFormCheck;
+    this._formValidatorReset = formValidatorReset;
     this._form = document
       .querySelector(popUpSelector)
       .querySelector(".dialog__content");
     this._handleFormSubmit = handleFormSubmit;
-    this._inputList = this._form.querySelectorAll(".dialog__input");
+    this._inputList = Array.from(this._form.querySelectorAll(".dialog__input"));
   }
 
   _getInputValues() {
@@ -21,17 +20,18 @@ export class PopupWithForm extends Popup {
 
   open() {
     super.open();
-    this._formValidator.resetForm(this._resetFormCheck);
+    this._formValidatorReset();
   }
 
   close() {
     super.close();
-    this._formValidator.resetForm(this._resetFormCheck);
+    this._formValidatorReset();
   }
 
-  setInputsValues({ name, about }) {
-    this._inputList[0].value = name;
-    this._inputList[1].value = about;
+  setInputsValues(values) {
+    this._inputList.forEach((input) => {
+      input.value = values[input.name] || "";
+    });
   }
 
   setEventListeners() {
