@@ -1,9 +1,10 @@
 export class Card {
-  constructor(name, link, cardSelector, handleCardClick) {
+  constructor(name, link, cardSelector, handleCardClick, deletePopup) {
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._name = name;
     this._link = link;
+    this._deletePopup = deletePopup;
   }
 
   _getTemplate() {
@@ -13,10 +14,6 @@ export class Card {
       .cloneNode(true);
 
     return cardElement;
-  }
-
-  _trashClick() {
-    this._element.remove();
   }
 
   _likeClick() {
@@ -29,7 +26,7 @@ export class Card {
     this._element
       .querySelector(".gallery__trash")
       .addEventListener("click", () => {
-        this._trashClick();
+        this._deletePopup.open(this._element);
       });
 
     this._element

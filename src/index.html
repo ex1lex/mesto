@@ -12,11 +12,21 @@
     <main class="content">
       <section class="profile-container">
         <div class="profile">
-          <img
-            class="profile__avatar"
-            src="<%=require('./images/avatar.png')%>"
-            alt="Аватар профиля"
-          />
+          <div class="profile__avatar-container">
+            <img
+              class="profile__avatar"
+              src="<%=require('./images/avatar.png')%>"
+              alt="Аватар профиля"
+            />
+            <button type="button" class="profile__avatar-btn">
+              <img
+                class="profile__edit-icon"
+                src="<%=require('./images/edit.svg')%>"
+                alt="иконка редактирования профиля"
+              />
+            </button>
+          </div>
+
           <div class="profile__info">
             <div class="profile__header">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -34,7 +44,10 @@
             <button class="gallery__trash" type="button"></button>
             <div class="gallery__label">
               <h2 class="gallery__title"></h2>
-              <button type="button" class="gallery__like"></button>
+              <div>
+                <button type="button" class="gallery__like"></button>
+                <p class="gallery__like-count"></p>
+              </div>
             </div>
           </div>
         </template>
@@ -43,6 +56,58 @@
     <footer class="footer">
       <p class="footer__author">&copy; 2020 Mesto Russia</p>
     </footer>
+
+    <div class="dialog dialog_edit-avatar">
+      <div class="dialog__form">
+        <form
+          action="#"
+          class="dialog__content"
+          id="editAvatarForm"
+          name="editAvatarForm"
+          novalidate
+        >
+          <h3 class="dialog__title">Обновить аватар</h3>
+          <input
+            type="url"
+            class="dialog__input"
+            value=""
+            name="inputImageUrl"
+            placeholder="Ссылка на новый аватар"
+            required
+          />
+          <span class="dialog__error-label" id="inputImageUrlError"></span>
+          <button
+            type="submit"
+            form="editAvatarForm"
+            class="dialog__submit dialog__submit_disabled"
+            disabled
+          >
+            Сохранить
+          </button>
+        </form>
+        <button type="submit" class="dialog__close-button"></button>
+      </div>
+    </div>
+
+    <div class="dialog dialog_delete-card">
+      <div class="dialog__form">
+        <form
+          action="#"
+          class="dialog__content"
+          id="deleteCardForm"
+          name="deleteCardForm"
+          novalidate
+        >
+          <h3 class="dialog__title dialog__title_type_delete-form">
+            Вы уверены?
+          </h3>
+          <button type="submit" form="deleteCardForm" class="dialog__submit">
+            Да
+          </button>
+        </form>
+        <button type="submit" class="dialog__close-button"></button>
+      </div>
+    </div>
 
     <div class="dialog dialog_edit-profile">
       <div class="dialog__form">

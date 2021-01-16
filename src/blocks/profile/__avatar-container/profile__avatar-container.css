@@ -1,0 +1,15 @@
+.profile__avatar-container {
+  position: relative;
+  margin-right: 30px;
+}
+
+@media (max-width: 660px) {
+  .profile__avatar-container {
+    margin-bottom: 14px;
+    margin-right: 0;
+  }
+}
+
+.profile__avatar-container:hover > .profile__avatar-btn {
+  display: block;
+}

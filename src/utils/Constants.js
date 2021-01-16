@@ -1,7 +1,9 @@
 export const addCardBtn = document.querySelector(
   ".profile-container__add-button"
 );
+export const avatar = document.querySelector(".profile__avatar");
 export const editProfileBtn = document.querySelector(".profile__edit-button");
+export const editAvatarBtn = document.querySelector(".profile__avatar-btn");
 export const gallery = document.querySelector(".gallery");
 
 export const userSelectors = {
@@ -44,6 +46,15 @@ export const initialCards = [
 
 export const formEditProfileOptions = {
   formSelector: document.querySelector("#editProfileForm"),
+  inputSelector: ".dialog__input",
+  submitButtonSelector: ".dialog__submit",
+  inactiveButtonClass: "dialog__submit_disabled",
+  inputErrorClass: "dialog__input_error",
+  errorClass: "dialog__error-label_show",
+};
+
+export const formEditProfileAvatarOptions = {
+  formSelector: document.querySelector("#editAvatarForm"),
   inputSelector: ".dialog__input",
   submitButtonSelector: ".dialog__submit",
   inactiveButtonClass: "dialog__submit_disabled",
