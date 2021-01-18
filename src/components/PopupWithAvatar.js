@@ -15,7 +15,7 @@ export class PopupWithAvatar extends Popup {
   _getNewAvatar() {
     this._newAvatarUrl = "";
     this._inputList.forEach((input) => {
-      if (input.name === "inputImageUrl") {
+      if (input.name === "inputNewImageUrl") {
         this._newAvatarUrl = input.value;
       }
     });
