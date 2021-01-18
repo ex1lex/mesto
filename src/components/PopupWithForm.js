@@ -8,6 +8,8 @@ export class PopupWithForm extends Popup {
       .querySelector(".dialog__content");
     this._handleFormSubmit = handleFormSubmit;
     this._inputList = Array.from(this._form.querySelectorAll(".dialog__input"));
+    this._submit = this._form.querySelector(".dialog__submit");
+    this._submitText = this._submit.textContent;
   }
 
   _getInputValues() {
@@ -38,8 +40,11 @@ export class PopupWithForm extends Popup {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
-      this.close();
+      this._submit.textContent = "Сохранение...";
+      this._handleFormSubmit(this._getInputValues()).then(() => {
+        this.close();
+        this._submit.textContent = this._submitText;
+      });
     });
   }
 }

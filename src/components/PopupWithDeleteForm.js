@@ -1,27 +1,31 @@
 import Popup from "./Popup.js";
 export class PopupWithDeleteForm extends Popup {
-  constructor(popUpSelector) {
+  constructor(popUpSelector, deleteCardFunction) {
     super(popUpSelector);
     this._form = document
       .querySelector(popUpSelector)
       .querySelector(".dialog__content");
+    this._deleteCard = deleteCardFunction;
+    this._submit = this._form.querySelector(".dialog__submit");
+    this._submitText = this._submit.textContent;
   }
 
-  open(card) {
+  open(card, cardId) {
     super.open();
     this._card = card;
-  }
-
-  close() {
-    super.close();
-    this._card.remove();
+    this._cardId = cardId;
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this.close();
+      this._submit.textContent = "Удаление...";
+      this._deleteCard(this._cardId).then((data) => {
+        this._card.remove();
+        super.close();
+        this._submit.textContent = this._submitText;
+      });
     });
   }
 }

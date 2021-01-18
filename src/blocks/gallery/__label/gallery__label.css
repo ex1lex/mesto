@@ -9,4 +9,5 @@
   border-bottom-right-radius: 10px;
   justify-content: space-between;
   align-items: center;
+  min-height: 80px;
 }

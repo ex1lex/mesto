@@ -8,6 +8,8 @@ export class PopupWithAvatar extends Popup {
       .querySelector(".dialog__content");
     this._handleFormSubmit = handleFormSubmit;
     this._inputList = Array.from(this._form.querySelectorAll(".dialog__input"));
+    this._submit = this._form.querySelector(".dialog__submit");
+    this._submitText = this._submit.textContent;
   }
 
   _getNewAvatar() {
@@ -33,9 +35,13 @@ export class PopupWithAvatar extends Popup {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
+      this._submit.textContent = "Сохранение...";
+
       this._getNewAvatar();
-      this._handleFormSubmit(this._newAvatarUrl);
-      this.close();
+      this._handleFormSubmit(this._newAvatarUrl).then(() => {
+        this.close();
+        this._submit.textContent = this._submitText;
+      });
     });
   }
 }
