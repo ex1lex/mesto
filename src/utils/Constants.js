@@ -4,6 +4,18 @@ export const addCardBtn = document.querySelector(
 export const editProfileBtn = document.querySelector(".profile__edit-button");
 export const editAvatarBtn = document.querySelector(".profile__avatar-btn");
 export const gallery = document.querySelector(".gallery");
+export const addCardSubmit = document.forms.addCardForm.querySelector(
+  ".dialog__submit"
+);
+export const editUserInfoSubmit = document.forms.editProfileForm.querySelector(
+  ".dialog__submit"
+);
+export const editAvatarSubmit = document.forms.editAvatarForm.querySelector(
+  ".dialog__submit"
+);
+export const deleteCardSubmit = document.forms.deleteCardForm.querySelector(
+  ".dialog__submit"
+);
 
 export const userSelectors = {
   selectorName: ".profile__title",

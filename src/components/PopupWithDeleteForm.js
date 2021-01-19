@@ -7,12 +7,11 @@ export class PopupWithDeleteForm extends Popup {
       .querySelector(".dialog__content");
     this._deleteCard = deleteCardFunction;
     this._submit = this._form.querySelector(".dialog__submit");
-    this._submitText = this._submit.textContent;
   }
 
-  open(card, cardId) {
+  open(remove, cardId) {
     super.open();
-    this._card = card;
+    this._remove = remove;
     this._cardId = cardId;
   }
 
@@ -22,9 +21,8 @@ export class PopupWithDeleteForm extends Popup {
       evt.preventDefault();
       this._submit.textContent = "Удаление...";
       this._deleteCard(this._cardId).then((data) => {
-        this._card.remove();
+        this._remove();
         super.close();
-        this._submit.textContent = this._submitText;
       });
     });
   }

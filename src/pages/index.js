@@ -6,7 +6,6 @@ import { FormValidator } from "../components/FormValidator.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithDeleteForm } from "../components/PopupWithDeleteForm.js";
-import { PopupWithAvatar } from "../components/PopupWithAvatar.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { Api } from "../components/Api.js";
 
@@ -28,20 +27,27 @@ editProfileAvatarFormValidator.enableValidation();
 const addCardFormValidator = new FormValidator(data.formAddCardOptions);
 addCardFormValidator.enableValidation();
 
+const setDefaultTextBtn = (btn, text) => {
+  btn.textContent = text;
+};
+
 Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
   ([userInfo, initialCards]) => {
     user.setUserInfo(userInfo.name, userInfo.about);
     user.setUserAvatar(userInfo.avatar);
 
-    const popUpAvatar = new PopupWithAvatar(
+    const popUpAvatar = new PopupWithForm(
       ".dialog_edit-avatar",
       (value) => {
-        return new Promise((res) => {
-          api.setUserAvatar(value).then((info) => {
+        api
+          .setUserAvatar(value)
+          .then((info) => {
             user.setUserAvatar(info.avatar);
-            res();
+          })
+          .catch(api.catch)
+          .finally(() => {
+            setDefaultTextBtn(data.editAvatarSubmit, "Сохранить");
           });
-        });
       },
       () => editProfileAvatarFormValidator.resetForm(false)
     );
@@ -56,12 +62,15 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
     const popUpUserForm = new PopupWithForm(
       ".dialog_edit-profile",
       (values) => {
-        return new Promise((res) => {
-          api.setUserInfo(values).then((data) => {
+        api
+          .setUserInfo(values)
+          .then((data) => {
             user.setUserInfo(data.name, data.about);
-            res();
+          })
+          .catch(api.catch)
+          .finally(() => {
+            dsetDefaultTextBtn(data.editUserInfoSubmit, "Сохранить");
           });
-        });
       },
       () => editProfileFormValidator.resetForm(true)
     );
@@ -84,7 +93,11 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
           api.deleteCard(id).then((data) => {
             res();
           });
-        });
+        })
+          .catch(api.catch)
+          .finally(() => {
+            setDefaultTextBtn(data.deleteCardSubmit, "Да");
+          });
       }
     );
     popUpDeleteCardForm.setEventListeners();
@@ -93,44 +106,45 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
       const card = new Card(
         item,
         "#card",
-        (evt) => {
-          popUpImage.open(evt);
+        (link, alt) => {
+          popUpImage.open(link, alt);
         },
         popUpDeleteCardForm,
         () => {
           return new Promise((res) => {
             res(userInfo);
-          });
+          }).catch(api.catch);
         },
         (id) => {
           return new Promise((res) => {
             api.setLike(id).then((data) => {
               res(data);
             });
-          });
+          }).catch(api.catch);
         },
         (id) => {
           return new Promise((res) => {
             api.deleteLike(id).then((data) => {
               res(data);
             });
-          });
+          }).catch(api.catch);
         }
       );
-      data.gallery.prepend(card.generateCard());
+      section.addItem(card.generateCard());
     };
 
     const popUpAddCardForm = new PopupWithForm(
       ".dialog_add-card",
       (values) => {
-        return new Promise((res) => {
-          api
-            .addNewCard(values.inputTitle, values.inputImageUrl)
-            .then((card) => {
-              createNewCard(card);
-              res();
-            });
-        });
+        api
+          .addNewCard(values.inputTitle, values.inputImageUrl)
+          .then((card) => {
+            createNewCard(card);
+          })
+          .catch(api.catch)
+          .finally(() => {
+            setDefaultTextBtn(data.addCardSubmit, "Сохранить");
+          });
       },
       () => addCardFormValidator.resetForm(false)
     );
